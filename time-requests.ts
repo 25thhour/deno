@@ -1,3 +1,8 @@
+/* WARNING
+ * In its current form this script will constantly hammer the requested url.
+ * Expect to be rate limited / blocked / banned if you use unwisely!
+*/
+
 import { difference } from "https://deno.land/std@0.152.0/datetime/mod.ts";
 
 console.log("Press Ctrl-C to trigger a SIGINT signal");
