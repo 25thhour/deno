@@ -1,5 +1,12 @@
 import { difference } from "https://deno.land/std@0.152.0/datetime/mod.ts";
 
+console.log("Press Ctrl-C to trigger a SIGINT signal");
+
+Deno.addSignalListener("SIGINT", () => {
+  console.log(`\nExited after ${i} requests`);
+  Deno.exit();
+});
+
 const requestUrl = Deno.args[0];
 const timeDelta = Deno.args[1];
 
@@ -11,7 +18,6 @@ if (!requestUrl || !timeDelta) {
   Deno.exit(1);
 }
 
-console.log("Press Ctrl-C to trigger a SIGINT signal");
 console.log(`Logging response durations >${timeDelta}ms`);
 
 let i = 0;
