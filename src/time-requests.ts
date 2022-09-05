@@ -27,6 +27,7 @@ console.log(`Logging response durations >${timeDelta}ms`);
 
 let i = 0;
 let overTimeDelta = 0;
+let successfulRequests = 0;
 const iterations = Number(Deno.args[2]);
 
 while ((iterations ? i < iterations : true)) {
@@ -52,13 +53,14 @@ while ((iterations ? i < iterations : true)) {
           headers[`cf-ray`],
         );
       }
+      successfulRequests++;
     });
 }
 
-console.log(
-  `${
-    (overTimeDelta / i) * 100
-  }% of requests (${overTimeDelta}/${i}) with response >${timeDelta}ms`,
-);
+console.log(`
+${successfulRequests} successful requests completed.
+${
+  (overTimeDelta / i) * 100
+}% of requests (${overTimeDelta}/${i}) with response >${timeDelta}ms`);
 
 Deno.exit(0);
