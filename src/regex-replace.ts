@@ -8,7 +8,7 @@ try {
     `;
   }
   const [src, match, replacement] = Deno.args;
-  console.log(regex_replace({ src, match, replacement }));
+  console.log(regex_replace(src, match, replacement));
 } catch (error) {
   console.error(error);
   Deno.exit(1);
@@ -23,11 +23,9 @@ try {
  * @param replacement string to replace src (can include regex groups)
  */
 function regex_replace(
-  { src, match, replacement }: {
-    src: string;
-    match: string;
-    replacement: string;
-  },
+  src: string,
+  match: string,
+  replacement: string,
 ): string {
   const regex = new RegExp(match); // convert string to regex
   const replace = replacement.replace(/\{|\}/g, ""); // strip RE2 replacement chars {}
